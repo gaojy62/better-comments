@@ -1,6 +1,7 @@
 # Better Comments
 
-**The current code forks the [Better Comments](https://github.com/aaron-bond/better-comments) project and implements it based on this [pull request](https://github.com/aaron-bond/better-comments/pull/392)**
+**The current code forks the [Better Comments](https://github.com/aaron-bond/better-comments) project and implements it based on this [pull request](https://github.com/aaron-bond/better-comments/pull/392). Compared to the previous extension, this extension now supports embedded languages, Like Vue3 + Volar.**
+
 
 
 The Better Comments extension will help you create more human-friendly comments in your code.  
