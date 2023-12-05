@@ -1,10 +1,10 @@
 {
-    "name": "better-comments",
+    "name": "better-comments-edsl",
     "displayName": "Better Comments(with EDSL)",
     "icon": "icon.png",
     "description": "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
     "version": "3.0.2",
-    "publisher": "gaojy62",
+    "publisher": "gaojianyu",
     "author": {
         "name": "Aaron Bond"
     },
