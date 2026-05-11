@@ -113,6 +113,7 @@ export class Parser {
 
         // If highlight multiline is off in package.json or doesn't apply to his language, return
         if (!this.highlightMultilineComments) return;
+        if (this.blockComments.length === 0) return;
 
         let text = activeEditor.document.getText();
 
@@ -128,14 +129,11 @@ export class Parser {
         commentMatchString += ")([ ]*|[:])+([^*/][^\\r\\n]*)";
 
         // Use start and end delimiters to find block comments
-        let regexString = "(^|[ \\t])";
+        let blockPatterns: string[] = [];
         for (let blockComment of this.blockComments) {
-            regexString += "(";
-            regexString += blockComment[0];
-            regexString += "[\\s])+([\\s\\S]*?)(";
-            regexString += blockComment[1];
-            regexString += ")";
+            blockPatterns.push("(" + blockComment[0] + "[\\s])+([\\s\\S]*?)(" + blockComment[1] + ")");
         }
+        let regexString = "(^|[ \\t])(?:" + blockPatterns.join("|") + ")";
 
         let regEx = new RegExp(regexString, "gm");
         let commentRegEx = new RegExp(commentMatchString, "igm");
@@ -236,6 +234,9 @@ export class Parser {
         this.supportedLanguage = false;
         this.ignoreFirstLine = false;
         this.isPlainText = false;
+        this.highlightSingleLineComments = true;
+        this.highlightMultilineComments = false;
+        this.highlightJSDoc = false;
 
         let configs = await this.configuration.GetCommentConfiguration(languageCode);
         if (configs.length > 0) {
